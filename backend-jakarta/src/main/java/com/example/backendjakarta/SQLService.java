@@ -21,9 +21,9 @@ public class SQLService {
         }
         try {
             connection = DriverManager.getConnection(
-            "jdbc:postgresql://localhost:5432/mydb",
-            "pgadmin",
-            "pgadmin"
+            "jdbc:postgresql://localhost:5432/postgres",
+            "postgres",
+            "changeme"
             );
         } catch (SQLException e) {
             throw new RuntimeException(e);

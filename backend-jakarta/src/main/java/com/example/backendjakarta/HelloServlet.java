@@ -1,29 +1,29 @@
 package com.example.backendjakarta;
 
 import java.io.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.util.List;
 
+import com.example.backendjakarta.dao.MenuItemDao;
+import com.example.backendjakarta.models.MenuItemModel;
+import com.google.gson.Gson;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import lombok.SneakyThrows;
 
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
-    private String message;
-
     public void init() {
-        message = "Hello World!";
+
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
+    @SneakyThrows
+    public void doGet(HttpServletRequest request, HttpServletResponse response) {
+        List<MenuItemModel> items = MenuItemDao.findAll();
+        String json = new Gson().toJson(items);
 
-        // Hello
+        response.setContentType("application/json");
         PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + message + "</h1>");
-        out.println("</body></html>");
+        out.print(json);
     }
 
     public void destroy() {
