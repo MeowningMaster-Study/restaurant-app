@@ -1,6 +1,10 @@
 package com.example.backendjakarta;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
