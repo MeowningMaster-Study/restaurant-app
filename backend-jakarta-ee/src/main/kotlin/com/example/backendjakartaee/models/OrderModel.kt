@@ -1,5 +1,15 @@
 package com.example.backendjakartaee.models
 
-import com.example.backendjakartaee.JsonSerializable
+import jakarta.json.bind.annotation.JsonbCreator
+import jakarta.json.bind.annotation.JsonbProperty
 
-data class OrderModel(var id: Int, var clientName: String) : JsonSerializable
+data class OrderCreateModel @JsonbCreator constructor(
+    @JsonbProperty("clientName") var clientName: String,
+    @JsonbProperty("paid") var paid: Boolean
+)
+
+data class OrderModel @JsonbCreator constructor(
+    @JsonbProperty("id") var id: Int,
+    @JsonbProperty("clientName") var clientName: String,
+    @JsonbProperty("paid") var paid: Boolean
+)

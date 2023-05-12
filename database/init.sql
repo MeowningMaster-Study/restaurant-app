@@ -6,7 +6,8 @@ CREATE TABLE menu_item (
 
 CREATE TABLE "order" (
     id SERIAL PRIMARY KEY,
-    client_name TEXT NOT NULL
+    client_name TEXT NOT NULL,
+    paid BOOLEAN DEFAULT false
 );
 
 CREATE TABLE order_content (
@@ -15,10 +16,4 @@ CREATE TABLE order_content (
     quantity INT NOT NULL,
     FOREIGN KEY (order_id) REFERENCES "order" (id),
     FOREIGN KEY (menu_item) REFERENCES menu_item (id)
-);
-
-CREATE TABLE invoice (
-    order_id INT PRIMARY KEY,
-    paid BOOLEAN NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES "order" (id)
 );

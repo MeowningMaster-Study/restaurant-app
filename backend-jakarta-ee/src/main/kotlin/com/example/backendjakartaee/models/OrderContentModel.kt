@@ -1,5 +1,10 @@
 package com.example.backendjakartaee.models
 
-import com.example.backendjakartaee.JsonSerializable
+import jakarta.json.bind.annotation.JsonbCreator
+import jakarta.json.bind.annotation.JsonbProperty
 
-data class OrderContentModel(var orderId: Int, var menuItem: MenuItemModel, var quantity: Int) : JsonSerializable
+data class OrderContentModel @JsonbCreator constructor(
+    @JsonbProperty("orderId") var orderId: Int,
+    @JsonbProperty("menuItem") var menuItem: MenuItemModel,
+    @JsonbProperty("quantity") var quantity: Int
+)
