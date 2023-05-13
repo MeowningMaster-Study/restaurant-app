@@ -1,0 +1,184 @@
+openapi: 3.0.0
+info:
+  title: Restaurant API
+  version: 1.0.0
+
+paths:
+  /menu-items:
+    get:
+      summary: Get all menu items
+      operationId: getMenuItems
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MenuItemModel'
+
+  /orders:
+    get:
+      summary: Get all orders
+      operationId: getOrders
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderModel'
+
+    post:
+      summary: Create an order
+      operationId: createOrder
+      requestBody:
+        description: The order to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderCreateModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+
+    put:
+      summary: Update an order
+      operationId: updateOrder
+      requestBody:
+        description: The order to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderModel'
+      responses:
+        '200':
+          description: OK
+
+  /orders/{orderId}/contents:
+    get:
+      summary: Get the contents of an order
+      operationId: getOrderContents
+      parameters:
+        - in: path
+          name: orderId
+          schema:
+            type: integer
+          required: true
+          description: The ID of the order
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderContentModel'
+
+    delete:
+      summary: Delete the contents of an order
+      operationId: deleteOrderContents
+      parameters:
+        - in: path
+          name: orderId
+          schema:
+            type: integer
+          required: true
+          description: The ID of the order
+      responses:
+        '204':
+          description: No content
+
+    put:
+      summary: Update the contents of an order
+      operationId: updateOrderContents
+      parameters:
+        - in: path
+          name: orderId
+          schema:
+            type: integer
+          required: true
+          description: The ID of the order
+      requestBody:
+        description: The contents to update
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderContentCreateModel'
+      responses:
+        '200':
+          description: OK
+
+components:
+  schemas:
+    MenuItemModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        price:
+          type: number
+          format: decimal
+    OrderContentCreateModel:
+      type: object
+      properties:
+        menuItem:
+          type: integer
+        quantity:
+          type: integer
+    OrderContentModel:
+      type: object
+      properties:
+        orderId:
+          type: integer
+        menuItem:
+          type: integer
+        quantity:
+          type: integer
+    OrderCreateModel:
+      type: object
+      properties:
+        clientName:
+          type: string
+        paid:
+          type: boolean
+    OrderModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        clientName:
+          type: string
+        paid:
+          type: boolean
+  parameters:
+    orderIdPathParam:
+      name: orderId
+      in: path
+      required: true
+      schema:
+        type: integer
+  responses:
+    OrderContentModelList:
+      description: A list of OrderContentModels
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/OrderContentModel'

@@ -2,6 +2,7 @@ package com.example.backendjakartaee
 
 import java.sql.Connection
 import java.sql.DriverManager
+import io.github.cdimascio.dotenv.dotenv
 
 object SqlService {
     private var isInstantiated = false
@@ -12,10 +13,13 @@ object SqlService {
             return
         }
         Class.forName("org.postgresql.Driver")
+
+        val env = dotenv()
+
         connection = DriverManager.getConnection(
-            "jdbc:postgresql://localhost:5432/postgres",
-            "postgres",
-            "changeme"
+            env["DB_URL"],
+            env["DB_USERNAME"],
+            env["DB_PASSWORD"]
         )
     }
 
