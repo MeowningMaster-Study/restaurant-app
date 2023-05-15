@@ -1,0 +1,33 @@
+.page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.box {
+    background-color: var(--color-gray);
+    min-width: min(80%, 500px);
+    border-radius: 16px;
+    margin: 64px 24px;
+    padding: 30px 50px;
+}
+
+.table > th,
+td {
+    border: 1px dashed;
+    border-collapse: collapse;
+    padding: 4px;
+}
+
+.quantityInput {
+    width: 100px;
+}
+
+.clientRow {
+    margin: 10px 0;
+}
+
+.clientRow > input {
+    margin-left: 10px;
+}

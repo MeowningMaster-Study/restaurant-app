@@ -1,0 +1,17 @@
+@import url('./colors.css');
+@import url('./fonts.css');
+@import url('./reset.css');
+
+body {
+    min-height: 100vh;
+    /* padding: 16px; */
+}
+
+button {
+    background-color: var(--color-accent);
+    color: var(--color-dark);
+    margin: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -1,0 +1,11 @@
+{
+    "editor.formatOnSave": true,
+    "[javascript][typescript][javascriptreact][typescriptreact][json][css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.expand": false,
+    "explorer.fileNesting.patterns": {
+        "package.json": ".editorconfig, .eslint*, .pnpm*, .prettier*, vite.config.*, pnpm*, prettier*, tsconfig.*, .npmrc, .gitignore"
+    }
+}
