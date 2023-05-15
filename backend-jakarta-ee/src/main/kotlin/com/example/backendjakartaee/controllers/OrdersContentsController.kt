@@ -1,6 +1,7 @@
 package com.example.backendjakartaee.controllers
 
 import com.example.backendjakartaee.dao.OrderContentDao
+import com.example.backendjakartaee.dao.OrderDao
 import com.example.backendjakartaee.models.OrderContentCreateModel
 import com.example.backendjakartaee.models.OrderContentModel
 import jakarta.ws.rs.DELETE
@@ -19,6 +20,7 @@ class OrdersContentsController {
     @DELETE
     fun delete(@PathParam("orderId") orderId: Int) {
         OrderContentDao.deleteByOrder(orderId)
+        OrderDao.deleteOrder(orderId)
     }
 
     @PUT
