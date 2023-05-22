@@ -12,9 +12,14 @@ export default defineConfig({
     },
     resolve: {
         alias: Object.fromEntries(
-            ['components', 'styles', 'utilities', 'fetchers', 'types'].map(
-                (x) => [`#${x}`, path.resolve(`src/${x}`)],
-            ),
+            [
+                'components',
+                'styles',
+                'utilities',
+                'fetchers',
+                'types',
+                'auth',
+            ].map((x) => [`#${x}`, path.resolve(`src/${x}`)]),
         ),
     },
 })
